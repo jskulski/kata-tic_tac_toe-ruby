@@ -7,10 +7,16 @@ describe "Tic Tac Toe" do
 		TicTacToe.new
 	end
 
-	it "game can make move" do
+	it "a move can be made" do
 		game = TicTacToe.new
 		game.move
 	end
+
+	it "can determine if there is a winner" do
+		game = TicTacToe.new
+		game.winner?
+	end
+
 
 
 end
