@@ -57,6 +57,14 @@ describe "Tic Tac Toe" do
 				game.make_mark(player_one_token, 0, 1)
 			}.to raise_error(NotPlayersTurnError)
 		end
+
+		it "a player can't play where a move has been made" do
+			game.make_mark(player_one_token, 0, 0)
+
+			expect{ 
+				game.make_mark(player_two_token, 0, 0)
+			}.to raise_error(InvalidMoveError)
+		end
 	end
 
 end

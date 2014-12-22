@@ -8,6 +8,9 @@ class TicTacToe
 		if @last_player == player_token
 			raise NotPlayersTurnError.new('Player can not play twice in a row')
 		end
+		if @board.get_mark(x_cooridinate, y_cooridinate) != '-'
+			raise InvalidMoveError.new('Player can not play twice in a row')
+		end
 		@board.mark(player_token, x_cooridinate, y_cooridinate)
 		@last_player = player_token
 	end
@@ -53,3 +56,7 @@ end
 
 class NotPlayersTurnError < StandardError
 end
+
+class InvalidMoveError < StandardError
+end
+	
