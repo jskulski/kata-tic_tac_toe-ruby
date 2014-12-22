@@ -12,7 +12,7 @@ describe "Tic Tac Toe" do
 
 	context "board" do
 		it "is initially unplayed marks" do
-			expect(board.get_mark(1,1)).to eq('-')
+			expect(board.get_mark(1,1)).to be_a(UnplayedMark)
 		end
 	end
 

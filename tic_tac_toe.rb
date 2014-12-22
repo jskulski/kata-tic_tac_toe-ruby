@@ -8,9 +8,12 @@ class TicTacToe
 		if @last_player == mark.player_token
 			raise NotPlayersTurnError.new('Player can not play twice in a row')
 		end
-		if @board.get_mark(x_cooridinate, y_cooridinate) != '-'
+
+		
+		if !@board.get_mark(x_cooridinate, y_cooridinate).is_a?(UnplayedMark)
 			raise InvalidMoveError.new('Player can not play twice in a row')
 		end
+
 		@board.mark(mark, x_cooridinate, y_cooridinate)
 		@last_player = mark.player_token
 	end
@@ -23,9 +26,9 @@ end
 class Board 
 	def initialize
 		@marks = [ 
-			['-', '-', '-'],
-			['-', '-', '-'],
-			['-', '-', '-']
+			[UnplayedMark.new, UnplayedMark.new, UnplayedMark.new],
+			[UnplayedMark.new, UnplayedMark.new, UnplayedMark.new],
+			[UnplayedMark.new, UnplayedMark.new, UnplayedMark.new]
 		]
 	end
 
@@ -67,6 +70,12 @@ class Mark
 
 	def initialize(player_token)
 		@player_token  = player_token
+	end
+end
+
+class UnplayedMark
+	def initialize
+		@player_token = '-'
 	end
 end
 
