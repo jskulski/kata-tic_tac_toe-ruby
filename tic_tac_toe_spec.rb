@@ -76,16 +76,29 @@ describe "Tic Tac Toe" do
 			expect(result).to eq(player_one)
 		end
 
-		# it "detects a winner for the top row for player two" do 
-		# 	game.make_mark(player_one, 2, 2)
-		# 	game.make_mark(player_two, 0, 0)
-		# 	game.make_mark(player_one, 2, 1)
-		# 	game.make_mark(player_two, 1, 0)
-		# 	game.make_mark(player_one, 2, 2)
+		it "detects a winner for the top row for player two" do 
+			game.make_mark(player_one, 2, 2)
+			game.make_mark(player_two, 0, 0)
+			game.make_mark(player_one, 2, 1)
+			game.make_mark(player_two, 1, 0)
+			game.make_mark(player_one, 1, 2)
+			game.make_mark(player_two, 2, 0)
 
-		# 	result = game.winner?
-		# 	expect(result).to eq(player_two)
-		# end
+			result = game.winner?
+			expect(result).to eq(player_two)
+		end
+
+		it "detects a winner for the middle row for player two" do 
+			game.make_mark(player_one, 2, 2)
+			game.make_mark(player_two, 1, 0)
+			game.make_mark(player_one, 0, 1)
+			game.make_mark(player_two, 1, 1)
+			game.make_mark(player_one, 1, 2)
+			game.make_mark(player_two, 2, 1)
+
+			result = game.winner?
+			expect(result).to eq(player_two)
+		end
 	end
 
 	context "follows the rules" do
