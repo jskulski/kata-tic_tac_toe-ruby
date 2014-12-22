@@ -3,5 +3,6 @@ class TicTacToe
 	end
 
 	def winner?
+		'X'
 	end
 end
