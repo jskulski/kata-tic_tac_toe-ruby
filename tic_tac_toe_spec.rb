@@ -35,7 +35,7 @@ describe "Tic Tac Toe" do
 			result = game.winner?
 			expect(result).to eq(false)
 		end
-
+		
 	end
 
 end
