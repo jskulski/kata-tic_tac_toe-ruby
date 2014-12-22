@@ -10,18 +10,18 @@ describe "Tic Tac Toe" do
 	context "plays complete games" do 
 		it "detects a winning top row for X" do 
 			player_token = 'X'
-			game.make_move(player_token, 0, 0)
-			game.make_move(player_token, 0, 1)
-			game.make_move(player_token, 0, 2)
+			game.make_mark(player_token, 0, 0)
+			game.make_mark(player_token, 0, 1)
+			game.make_mark(player_token, 0, 2)
 			result = game.winner?
 			expect(result).to eq(player_token)
 		end
 
 		it "detects a winning top row for Y" do 
 			player_token = 'Y'
-			game.make_move(player_token, 0, 0)
-			game.make_move(player_token, 0, 1)
-			game.make_move(player_token, 0, 2)
+			game.make_mark(player_token, 0, 0)
+			game.make_mark(player_token, 0, 1)
+			game.make_mark(player_token, 0, 2)
 			result = game.winner?
 			expect(result).to eq(player_token)
 		end
@@ -30,9 +30,9 @@ describe "Tic Tac Toe" do
 			player_one_token = 'X'
 			player_two_token = 'Y'
 
-			game.make_move(player_one_token, 0, 0)
-			game.make_move(player_two_token, 0, 1)
-			game.make_move(player_one_token, 0, 2)
+			game.make_mark(player_one_token, 0, 0)
+			game.make_mark(player_two_token, 0, 1)
+			game.make_mark(player_one_token, 0, 2)
 
 			result = game.winner?
 			expect(result).to eq(false)

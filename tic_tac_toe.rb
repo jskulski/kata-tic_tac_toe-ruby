@@ -4,7 +4,7 @@ class TicTacToe
 		@referee = referee
 	end
 
-	def make_move(player_token, x_cooridinate, y_cooridinate)
+	def make_mark(player_token, x_cooridinate, y_cooridinate)
 		@board.mark(player_token, x_cooridinate, y_cooridinate)
 	end
 
