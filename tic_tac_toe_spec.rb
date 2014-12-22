@@ -7,19 +7,21 @@ describe "Tic Tac Toe" do
 
 	context "plays complete games" do 
 		it "detects a winning top row for X" do 
-			game.make_move('X', 0, 0)
-			game.make_move('X', 0, 1)
-			game.make_move('X', 0, 2)
+			player_token = 'X'
+			game.make_move(player_token, 0, 0)
+			game.make_move(player_token, 0, 1)
+			game.make_move(player_token, 0, 2)
 			result = game.winner?
-			expect(result).to eq('X')
+			expect(result).to eq(player_token)
 		end
 
 		it "detects a winning top row for Y" do 
-			game.make_move('Y', 0, 0)
-			game.make_move('Y', 0, 1)
-			game.make_move('Y', 0, 2)
+			player_token = 'Y'
+			game.make_move(player_token, 0, 0)
+			game.make_move(player_token, 0, 1)
+			game.make_move(player_token, 0, 2)
 			result = game.winner?
-			expect(result).to eq('Y')
+			expect(result).to eq(player_token)
 		end
 	end
 
