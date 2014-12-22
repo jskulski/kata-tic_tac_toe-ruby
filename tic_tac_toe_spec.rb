@@ -3,7 +3,9 @@ require_relative 'spec_helper'
 
 describe "Tic Tac Toe" do
 
-	Given(:game) { TicTacToe.new }
+	Given(:board) { Board.new }
+	Given(:referee) { Referee.new }
+	Given(:game) { TicTacToe.new(board, referee) }
 
 	context "plays complete games" do 
 		it "detects a winning top row for X" do 
@@ -35,7 +37,7 @@ describe "Tic Tac Toe" do
 			result = game.winner?
 			expect(result).to eq(false)
 		end
-		
+
 	end
 
 end

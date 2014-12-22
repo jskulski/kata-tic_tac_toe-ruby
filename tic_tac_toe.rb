@@ -1,30 +1,43 @@
 class TicTacToe
+	def initialize(board, referee)
+		@board = board
+		@referee = referee
+	end
+
+	def make_move(player_token, x_cooridinate, y_cooridinate)
+		@board.mark(player_token, x_cooridinate, y_cooridinate)
+	end
+
+	def winner?
+		@referee.winner?(@board)
+	end
+
+end
+
+class Board 
 	def initialize
-		@board = [ 
+		@marks = [ 
 			['-', '-', '-'],
 			['-', '-', '-'],
 			['-', '-', '-']
 		]
 	end
 
-	def make_move(player_token, x_cooridinate, y_cooridinate)
-		mark_board_with_token(@board, player_token, x_cooridinate, y_cooridinate)
+	def mark(player_token, x_cooridinate, y_cooridinate)
+		@marks[x_cooridinate][y_cooridinate] = player_token
 	end
 
-	def winner?
-		determine_winner(@board)
+	def get_mark(x_cooridinate, y_cooridinate)
+		@marks[x_cooridinate][y_cooridinate]
 	end
+end
 
-	def mark_board_with_token(board, player_token, x_cooridinate, y_cooridinate)
-		board[x_cooridinate][y_cooridinate] = player_token
-	end
-
-	def determine_winner(board)
-		if board[0][0] == board[0][1] && board[0][1] == board[0][2]
-			board[0][2]
+class Referee
+	def winner?(board)
+		if board.get_mark(0,0) == board.get_mark(0,1) && board.get_mark(0,1) == board.get_mark(0,2)
+			board.get_mark(0,2)
 		else
 			false
 		end
 	end
 end
-
