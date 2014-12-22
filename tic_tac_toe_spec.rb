@@ -7,12 +7,17 @@ describe "Tic Tac Toe" do
 	Given(:referee) { Referee.new }
 	Given(:game) { TicTacToe.new(board, referee) }
 
-	Given(:player_one) { Mark.new("X") }
-	Given(:player_two) { Mark.new("Y") }
+	Given(:player_one) { PlayerMark.new("X") }
+	Given(:player_two) { PlayerMark.new("Y") }
 
 	context "board" do
 		it "is initially unplayed marks" do
 			expect(board.get_mark(1,1)).to be_a(UnplayedMark)
+		end
+
+		it "when a player makes a mark we get it back" do
+			game.make_mark(player_two, 1, 1)
+			expect(board.get_mark(1,1)).to be_a(PlayerMark)
 		end
 	end
 

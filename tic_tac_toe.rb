@@ -5,7 +5,7 @@ class TicTacToe
 	end
 
 	def make_mark(mark, x_cooridinate, y_cooridinate)
-		if @last_player == mark.player_token
+		if @last_player == mark
 			raise NotPlayersTurnError.new('Player can not play twice in a row')
 		end
 
@@ -15,7 +15,7 @@ class TicTacToe
 		end
 
 		@board.mark(mark, x_cooridinate, y_cooridinate)
-		@last_player = mark.player_token
+		@last_player = mark
 	end
 
 	def winner?
@@ -66,16 +66,17 @@ class InvalidMoveError < StandardError
 end
 
 class Mark
-	attr_accessor :player_token
+	attr_accessor :token
+end
 
+class PlayerMark < Mark
 	def initialize(player_token)
-		@player_token  = player_token
+		@token = player_token
 	end
 end
 
-class UnplayedMark
+class UnplayedMark < Mark
 	def initialize
-		@player_token = '-'
+		@token = '-'
 	end
 end
-
