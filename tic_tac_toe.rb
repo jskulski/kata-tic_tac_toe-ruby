@@ -34,10 +34,17 @@ end
 
 class Referee
 	def winner?(board)
-		if board.get_mark(0,0) == board.get_mark(0,1) && board.get_mark(0,1) == board.get_mark(0,2)
+		if row_winner?(board, 0)
 			board.get_mark(0,2)
 		else
 			false
 		end
 	end
+
+	private 
+
+	def row_winner?(board, row)
+		board.get_mark(row, 0) == board.get_mark(row, 1) && board.get_mark(row, 1) == board.get_mark(row, 2)
+	end
+
 end
