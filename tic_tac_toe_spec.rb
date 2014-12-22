@@ -5,12 +5,16 @@ describe "Tic Tac Toe" do
 
 	Given(:game) { TicTacToe.new }
 
-	it "a move can be made" do
-		game.move
+	context "a move can be made" do
+		it "a move can be made" do
+			game.move
+		end
 	end
 
-	it "can determine if there is a winner" do
-		game.winner?
+	context "determining a winner" do
+		it "can determine if there is a winner" do
+			game.winner?
+		end
 	end
 
 end
