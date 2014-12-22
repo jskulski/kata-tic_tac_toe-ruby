@@ -4,15 +4,15 @@ class TicTacToe
 		@referee = referee
 	end
 
-	def make_mark(player_token, x_cooridinate, y_cooridinate)
-		if @last_player == player_token
+	def make_mark(mark)
+		if @last_player == mark.player_token
 			raise NotPlayersTurnError.new('Player can not play twice in a row')
 		end
-		if @board.get_mark(x_cooridinate, y_cooridinate) != '-'
+		if @board.get_mark(mark.x_cooridinate, mark.y_cooridinate) != '-'
 			raise InvalidMoveError.new('Player can not play twice in a row')
 		end
-		@board.mark(player_token, x_cooridinate, y_cooridinate)
-		@last_player = player_token
+		@board.mark(mark.player_token, mark.x_cooridinate, mark.y_cooridinate)
+		@last_player = mark.player_token
 	end
 
 	def winner?
@@ -59,4 +59,17 @@ end
 
 class InvalidMoveError < StandardError
 end
-	
+
+class Mark
+
+	attr_accessor :player_token
+	attr_accessor :x_cooridinate
+	attr_accessor :y_cooridinate
+
+	def initialize(player_token, x_cooridinate, y_cooridinate)
+		@player_token  = player_token
+		@x_cooridinate = x_cooridinate
+		@y_cooridinate = y_cooridinate
+	end
+end
+

@@ -13,11 +13,11 @@ describe "Tic Tac Toe" do
 	context "plays complete games" do 
 		it "detects a winning top row for X" do 
 
-			game.make_mark(player_one_token, 0, 0)
-			game.make_mark(player_two_token, 1, 2)
-			game.make_mark(player_one_token, 0, 1)
-			game.make_mark(player_two_token, 2, 2)
-			game.make_mark(player_one_token, 0, 2)
+			game.make_mark(Mark.new(player_one_token, 0, 0))
+			game.make_mark(Mark.new(player_two_token, 1, 1))
+			game.make_mark(Mark.new(player_one_token, 0, 1))
+			game.make_mark(Mark.new(player_two_token, 1, 2))
+			game.make_mark(Mark.new(player_one_token, 0, 2))
 
 			result = game.winner?
 			expect(result).to eq(player_one_token)
@@ -26,11 +26,12 @@ describe "Tic Tac Toe" do
 		it "detects a winning top row for Y" do 
 			player_token = 'Y'
 
-			game.make_mark(player_two_token, 0, 0)
-			game.make_mark(player_one_token, 2, 1)
-			game.make_mark(player_two_token, 0, 1)
-			game.make_mark(player_one_token, 2, 2)
-			game.make_mark(player_two_token, 0, 2)
+			game.make_mark(Mark.new(player_one_token, 2, 0))
+			game.make_mark(Mark.new(player_two_token, 0, 0))
+			game.make_mark(Mark.new(player_one_token, 2, 1))
+			game.make_mark(Mark.new(player_two_token, 0, 1))
+			game.make_mark(Mark.new(player_one_token, 1, 2))
+			game.make_mark(Mark.new(player_two_token, 0, 2))
 
 			result = game.winner?
 			expect(result).to eq(player_two_token)
@@ -40,9 +41,9 @@ describe "Tic Tac Toe" do
 			player_one_token = 'X'
 			player_two_token = 'Y'
 
-			game.make_mark(player_one_token, 0, 0)
-			game.make_mark(player_two_token, 0, 1)
-			game.make_mark(player_one_token, 0, 2)
+			game.make_mark(Mark.new(player_one_token, 0, 0))
+			game.make_mark(Mark.new(player_two_token, 0, 1))
+			game.make_mark(Mark.new(player_one_token, 0, 2))
 
 			result = game.winner?
 			expect(result).to eq(false)
@@ -51,18 +52,18 @@ describe "Tic Tac Toe" do
 
 	context "follows the rules" do
 		it "a player can't play twice in a row" do
-			game.make_mark(player_one_token, 0, 0)
+			game.make_mark(Mark.new(player_one_token, 0, 0))
 
 			expect{ 
-				game.make_mark(player_one_token, 0, 1)
+				game.make_mark(Mark.new(player_one_token, 0, 1))
 			}.to raise_error(NotPlayersTurnError)
 		end
 
 		it "a player can't play where a move has been made" do
-			game.make_mark(player_one_token, 0, 0)
+			game.make_mark(Mark.new(player_one_token, 0, 0))
 
 			expect{ 
-				game.make_mark(player_two_token, 0, 0)
+				game.make_mark(Mark.new(player_two_token, 0, 0))
 			}.to raise_error(InvalidMoveError)
 		end
 	end
