@@ -11,7 +11,7 @@ class TicTacToe
 		if @board.get_mark(x_cooridinate, y_cooridinate) != '-'
 			raise InvalidMoveError.new('Player can not play twice in a row')
 		end
-		@board.mark(mark.player_token, x_cooridinate, y_cooridinate)
+		@board.mark(mark, x_cooridinate, y_cooridinate)
 		@last_player = mark.player_token
 	end
 
@@ -29,8 +29,8 @@ class Board
 		]
 	end
 
-	def mark(player_token, x_cooridinate, y_cooridinate)
-		@marks[x_cooridinate][y_cooridinate] = player_token
+	def mark(player_mark, x_cooridinate, y_cooridinate)
+		@marks[x_cooridinate][y_cooridinate] = player_mark
 	end
 
 	def get_mark(x_cooridinate, y_cooridinate)
