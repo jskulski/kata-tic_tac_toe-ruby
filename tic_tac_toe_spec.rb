@@ -22,7 +22,16 @@ describe "Tic Tac Toe" do
 	end
 
 	context "plays complete games" do 
-		it "detects a winning top row for X" do 
+		it "detects no winner in game in progress" do
+			game.make_mark(player_one, 0, 0)
+			game.make_mark(player_two, 0, 1)
+			game.make_mark(player_one, 0, 2)
+
+			result = game.winner?
+			expect(result).to eq(false)
+		end
+
+		it "detects a winning left column for X" do 
 			game.make_mark(player_one, 0, 0)
 			game.make_mark(player_two, 1, 1)
 			game.make_mark(player_one, 0, 1)
@@ -33,7 +42,7 @@ describe "Tic Tac Toe" do
 			expect(result).to eq(player_one)
 		end
 
-		it "detects a winning top row for Y" do 
+		it "detects a winning left column for Y" do 
 			game.make_mark(player_one, 2, 0)
 			game.make_mark(player_two, 0, 0)
 			game.make_mark(player_one, 2, 1)
@@ -45,16 +54,7 @@ describe "Tic Tac Toe" do
 			expect(result).to eq(player_two)
 		end
 
-		it "detects no winner if there is not winner in top row" do
-			game.make_mark(player_one, 0, 0)
-			game.make_mark(player_two, 0, 1)
-			game.make_mark(player_one, 0, 2)
-
-			result = game.winner?
-			expect(result).to eq(false)
-		end
-
-		it "detects a winner for the middle row for player one" do
+		it "detects a winner for the middle column for player one" do
 			game.make_mark(player_one, 1, 0)
 			game.make_mark(player_two, 2, 0)
 			game.make_mark(player_one, 1, 1)
@@ -64,10 +64,32 @@ describe "Tic Tac Toe" do
 			result = game.winner?
 			expect(result).to eq(player_one)
 		end
+
+		it "detects a winner for the right column for player one" do
+			game.make_mark(player_one, 2, 0)
+			game.make_mark(player_two, 1, 0)
+			game.make_mark(player_one, 2, 1)
+			game.make_mark(player_two, 1, 1)
+			game.make_mark(player_one, 2, 2)
+
+			result = game.winner?
+			expect(result).to eq(player_one)
+		end
+
+		# it "detects a winner for the top row for player two" do 
+		# 	game.make_mark(player_one, 2, 2)
+		# 	game.make_mark(player_two, 0, 0)
+		# 	game.make_mark(player_one, 2, 1)
+		# 	game.make_mark(player_two, 1, 0)
+		# 	game.make_mark(player_one, 2, 2)
+
+		# 	result = game.winner?
+		# 	expect(result).to eq(player_two)
+		# end
 	end
 
 	context "follows the rules" do
-		it "a player can't play twice in a row" do
+		it "a player can't play twice in the same space" do
 			game.make_mark(player_one, 0, 0)
 
 			expect{ 

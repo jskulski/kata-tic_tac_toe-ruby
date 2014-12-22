@@ -4,17 +4,17 @@ class TicTacToe
 		@referee = referee
 	end
 
-	def make_mark(mark, x_cooridinate, y_cooridinate)
+	def make_mark(mark, column, row)
 		if @last_player == mark
-			raise NotPlayersTurnError.new('Player can not play twice in a row')
+			raise NotPlayersTurnError.new('Player has to play on their turn')
 		end
 
 		
-		if !@board.get_mark(x_cooridinate, y_cooridinate).is_a?(UnplayedMark)
-			raise InvalidMoveError.new('Player can not play twice in a row')
+		if !@board.get_mark(column, row).is_a?(UnplayedMark)
+			raise InvalidMoveError.new('A move has already been made at that cooridinate')
 		end
 
-		@board.mark(mark, x_cooridinate, y_cooridinate)
+		@board.mark(mark, column, row)
 		@last_player = mark
 	end
 
@@ -32,21 +32,23 @@ class Board
 		]
 	end
 
-	def mark(player_mark, x_cooridinate, y_cooridinate)
-		@marks[x_cooridinate][y_cooridinate] = player_mark
+	def mark(player_mark, column, row)
+		@marks[column][row] = player_mark
 	end
 
-	def get_mark(x_cooridinate, y_cooridinate)
-		@marks[x_cooridinate][y_cooridinate]
+	def get_mark(column, row)
+		@marks[column][row]
 	end
 end
 
 class Referee
 	def winner?(board)
-		if row_winner?(board, 0)
+		if column_winner?(board, 0)
 			board.get_mark(0, 0)
-		elsif row_winner?(board, 1)
+		elsif column_winner?(board, 1)
 			board.get_mark(1, 0)
+		elsif column_winner?(board, 2)
+			board.get_mark(2, 0)
 		else
 			false
 		end
@@ -54,8 +56,8 @@ class Referee
 
 	private 
 
-	def row_winner?(board, row)
-		board.get_mark(row, 0) == board.get_mark(row, 1) && board.get_mark(row, 1) == board.get_mark(row, 2) && board.get_mark(row, 2) != '-'
+	def column_winner?(board, column)
+		board.get_mark(column, 0) == board.get_mark(column, 1) && board.get_mark(column, 1) == board.get_mark(column, 2) && board.get_mark(column, 2) != '-'
 	end
 end
 
