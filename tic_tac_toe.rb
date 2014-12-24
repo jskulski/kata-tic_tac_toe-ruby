@@ -43,16 +43,10 @@ end
 
 class Referee
 	def winner?(board)
-		if check_column_for_winner?(board, 0)
-			board.get_mark(0, 0)
-		elsif check_column_for_winner?(board, 1)
-			board.get_mark(1, 0)
-		elsif check_column_for_winner?(board, 2)
-			board.get_mark(2, 0)
-		elsif row_winner?(board, 0)
-			board.get_mark(0, 0)
-		elsif row_winner?(board, 1)
-			board.get_mark(1, 1)
+		if column_winner?(board)
+			column_winner?(board)
+		elsif row_winner?(board)
+			row_winner?(board)
 		else
 			false
 		end
@@ -60,11 +54,43 @@ class Referee
 
 	private 
 
+	def column_winner?(board)
+		if check_column_for_winner?(board, 0)
+			board.get_mark(0, 0)
+		elsif check_column_for_winner?(board, 1)
+			board.get_mark(1, 0)
+		elsif check_column_for_winner?(board, 2)
+			board.get_mark(2, 0)
+		else
+			false
+		end
+	end
+
+	def row_winner?(board)
+		if check_row_for_winner?(board, 0)
+			board.get_mark(0, 0)
+		elsif check_row_for_winner?(board, 1)
+			board.get_mark(1, 1)
+		else
+			false
+		end
+	end
+
+	def check_row_for_winner?(board, row)
+		if check_row_for_winner?(board, 0)
+			board.get_mark(0, 0)
+		elsif check_row_for_winner?(board, 1)
+			board.get_mark(1, 1)
+		else
+			false
+		end
+	end
+
 	def check_column_for_winner?(board, column)
 		board.get_mark(column, 0) == board.get_mark(column, 1) && board.get_mark(column, 1) == board.get_mark(column, 2) && board.get_mark(column, 2) != '-'
 	end
 
-	def row_winner?(board, row)
+	def check_row_for_winner?(board, row)
 		board.get_mark(0, row) == board.get_mark(1, row) && board.get_mark(1, row) == board.get_mark(2, row) && board.get_mark(2, row) != '-'
 	end
 end
