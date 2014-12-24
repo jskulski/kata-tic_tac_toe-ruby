@@ -43,14 +43,16 @@ end
 
 class Referee
 	def winner?(board)
-		if column_winner?(board, 0)
+		if check_column_for_winner?(board, 0)
 			board.get_mark(0, 0)
-		elsif column_winner?(board, 1)
+		elsif check_column_for_winner?(board, 1)
 			board.get_mark(1, 0)
-		elsif column_winner?(board, 2)
+		elsif check_column_for_winner?(board, 2)
 			board.get_mark(2, 0)
 		elsif row_winner?(board, 0)
 			board.get_mark(0, 0)
+		elsif row_winner?(board, 1)
+			board.get_mark(1, 1)
 		else
 			false
 		end
@@ -58,7 +60,7 @@ class Referee
 
 	private 
 
-	def column_winner?(board, column)
+	def check_column_for_winner?(board, column)
 		board.get_mark(column, 0) == board.get_mark(column, 1) && board.get_mark(column, 1) == board.get_mark(column, 2) && board.get_mark(column, 2) != '-'
 	end
 

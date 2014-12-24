@@ -93,8 +93,8 @@ describe "Tic Tac Toe" do
 			game.make_mark(player_two, 1, 0)
 			game.make_mark(player_one, 0, 1)
 			game.make_mark(player_two, 1, 1)
-			game.make_mark(player_one, 1, 2)
-			game.make_mark(player_two, 2, 1)
+			game.make_mark(player_one, 2, 0)
+			game.make_mark(player_two, 1, 2)
 
 			result = game.winner?
 			expect(result).to eq(player_two)
